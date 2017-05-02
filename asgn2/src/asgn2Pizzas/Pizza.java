@@ -13,7 +13,15 @@ import java.time.LocalTime;
  *
  */
 public abstract class Pizza  {
-	
+	private int quantity;
+	private LocalTime orderTime;
+	private LocalTime deliveryTime;
+	private String type;
+	private double price;
+	final int maxQuan = 10;
+	final int minOrderTime = 18;
+	final int maxOrderTime = 22;
+	final int minutes = 0;
 	/**
 	 *  This class represents a pizza produced at the Pizza Palace restaurant.  A detailed description of the class's fields
 	 *  and parameters is provided in the Assignment Specification, in particular in Section 5.1. 
@@ -33,6 +41,24 @@ public abstract class Pizza  {
 	 */
 	public Pizza(int quantity, LocalTime orderTime, LocalTime deliveryTime, String type, double price) throws PizzaException{
 		// TO DO	
+		this.quantity = quantity;
+		this.orderTime = orderTime;
+		this.deliveryTime = deliveryTime;
+		this.type = type;
+		this.price = price;
+		
+		
+		if(this.quantity > maxQuan){
+			throw new PizzaException("Order is out of bounds."); 
+			
+		}
+		else if(this.orderTime.getHour() < minOrderTime){
+			throw new PizzaException("Minimum Time out of bounds.");
+		}
+		else if(this.orderTime.getHour() >= maxOrderTime && this.orderTime.getMinute() != minutes){
+			throw new PizzaException("maximum Time order out of bounds.");
+		}
+		
 	}
 
 	/**
@@ -43,6 +69,9 @@ public abstract class Pizza  {
 	 */
 	public final void calculateCostPerPizza(){
 		// TO DO
+		double margherita = 0.5+1;
+		double vegetarian = 0.5+1+0.8+2+1.2;
+		double meatLovers = 0.5+1+1.5+1+1;
 	}
 	
 	/**
@@ -59,6 +88,7 @@ public abstract class Pizza  {
 	 */
 	public final double getPricePerPizza(){
 		// TO DO
+		return price;
 	}
 
 	/**
@@ -102,6 +132,7 @@ public abstract class Pizza  {
 	 */
 	public final int getQuantity(){
 		// TO DO
+		return quantity;
 	}
 
 	/**
@@ -111,6 +142,7 @@ public abstract class Pizza  {
 	 */
 	public final String getPizzaType(){
 		// TO DO
+		return type;
 	}
 
 
