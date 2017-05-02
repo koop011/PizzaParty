@@ -13,7 +13,18 @@ import java.time.LocalTime;
  *
  */
 public abstract class Pizza  {
-	
+	private int quantity;
+	private LocalTime orderTime;
+	private LocalTime deliveryTime;
+	private String type;
+	private double price;
+	private double margherita = 1.5;
+	private double vegetarian = 5.5;
+	private double meatLovers = 5.0;
+	final int maxQuan = 10;
+	final int minOrderTime = 18;
+	final int maxOrderTime = 22;
+	final int minutes = 0;
 	/**
 	 *  This class represents a pizza produced at the Pizza Palace restaurant.  A detailed description of the class's fields
 	 *  and parameters is provided in the Assignment Specification, in particular in Section 5.1. 
@@ -43,6 +54,12 @@ public abstract class Pizza  {
 	 */
 	public final void calculateCostPerPizza(){
 		// TO DO
+		double margherita = PizzaTopping.CHEESE.getCost() + PizzaTopping.TOMATO.getCost();
+		double vegetarian = PizzaTopping.CHEESE.getCost() + PizzaTopping.TOMATO.getCost() 
+		+ PizzaTopping.EGGPLANT.getCost() + PizzaTopping.MUSHROOM.getCost()+PizzaTopping.CAPSICUM.getCost();
+		double meatLovers = PizzaTopping.TOMATO.getCost()+PizzaTopping.CHEESE.getCost()
+		+PizzaTopping.BACON.getCost()+PizzaTopping.PEPPERONI.getCost()+PizzaTopping.SALAMI.getCost();
+				
 	}
 	
 	/**
@@ -51,6 +68,15 @@ public abstract class Pizza  {
 	 */
 	public final double getCostPerPizza(){
 		// TO DO
+		if(type == "Margherita"){
+			return margherita;
+		}
+		else if(type == "Vegetarian"){
+			return vegetarian;
+		}
+		else{
+			return meatLovers;
+		}
 	}
 
 	/**
